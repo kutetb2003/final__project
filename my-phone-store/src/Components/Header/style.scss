@@ -1,0 +1,23 @@
+$red-color: #f33f3f;
+$title-color: #1a6692;
+
+.heading {
+    padding: 120px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+
+    h4 {
+        font-size: 22px;
+        color: $red-color;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 62px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+}

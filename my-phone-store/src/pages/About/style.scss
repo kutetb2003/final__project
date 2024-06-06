@@ -1,0 +1,83 @@
+$red-color: #F33F3F;
+.about{
+    &__block{
+        margin-top: 80px;
+        &__title{
+            font-size: 28px;
+        }
+        &__content{
+            margin-top: 60px;
+            &__paragraph{
+                ul{
+                    display:flex;
+                    margin-top: 20px;
+                    
+                    li{
+                        margin-right: 20px;
+                        list-style-type: none;
+                        width: 60px; 
+                        height: 60px;
+                        background: #eeeeee;
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        &:hover{
+                            background: $red-color;
+                            cursor: pointer;
+                            color: #fff;
+                        }
+                    }
+                }
+                &__title{
+                    color: #1a6692;
+                    font-size: 22px;
+                    margin-bottom: 20px;
+                }
+                &__description{
+                    &--1{
+                        margin-bottom: 20px;
+                    }
+                    &--2{
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+    &__member{
+        margin-top: 80px;
+        margin-bottom: 80px;
+        &__heading{
+            font-size: 28px;
+        }
+        &__item{
+            margin-top: 60px;
+            border: 1px solid #eeeeee;
+            padding: 20px;
+            border-radius: 5px;;
+            &__image{
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 5px;
+                }
+            }
+            &__info{
+                text-align: center;
+                &__name{
+                    margin-top: 20px;
+                    font-size: 24px;
+                    color: #1a6692;
+                    font-weight: 600;
+                }
+                &__position{
+                    color: #F33F3F;
+                    font-weight: 600;
+                }
+                &__description{
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}

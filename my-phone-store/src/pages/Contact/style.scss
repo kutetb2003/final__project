@@ -1,0 +1,26 @@
+.contact{
+    margin-bottom: 10px;
+    &__block{
+        margin-top: 80px;
+        &__heading{
+            font-size: 28px;
+            font-weight: 500;
+        }
+        iframe{
+            margin-top: 60px;
+        }
+        &__title{
+            margin-top: 60px;
+            color: #1a6692;
+            font-size: 22px;
+        }
+        &__description{
+            &--1{
+                margin-top: 30px;
+            }
+            &--2{
+                margin-top: 30px;
+            }
+        }
+    }
+}

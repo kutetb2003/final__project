@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+.navbar-placeholeder{
+    height: 70px;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(../public/Poppins/Poppins-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+.body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+}

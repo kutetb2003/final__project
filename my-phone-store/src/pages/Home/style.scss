@@ -1,0 +1,85 @@
+$red-color: #F33F3F;
+$title-color: #1a6692;
+
+.latestProduct {
+  &__header {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    background: #fff;
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__button {
+      text-transform: uppercase;
+      font-weight: 13px;
+      color: $red-color;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      &--active {
+        cursor: pointer;
+        a{
+          text-decoration: none;
+          color: $red-color;
+        }
+      }
+    }
+  }
+  &__list{
+    margin-top: 25px;
+    img{
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border: 1px solid #eee;
+      border-bottom: none;
+      margin-top: 25px;
+    }
+    &__item{
+      border: 1px solid #eee;
+      border-top: none;
+      padding: 30px;
+      &__overall{
+        display:flex;
+        justify-content: space-between;
+        font-size: 18px;
+        &--title{
+          color: $title-color;
+        }
+      }
+      
+    }
+  }
+}
+
+//Short About
+.shortAbout{
+  margin-top: 100px;
+  margin-bottom: 80px;
+  &__title{
+    font-size: 28px;
+  }
+  &__content{
+    margin-top: 50px;
+    &--title{
+      color: $title-color;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    &--description{
+      margin-top: 30px;
+    }
+  }
+  ul{
+    margin-top: 30px;
+  }
+  #btnReadMore{
+    display: inline;
+    margin-top: 20px;
+  }
+}
+// End short about

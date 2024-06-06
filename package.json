@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "prop-types-exact": "^1.2.4"
+  }
+}
