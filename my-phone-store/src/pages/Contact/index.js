@@ -56,6 +56,11 @@ const Contact = () => {
                   staff.
                 </div>
                 <HrLine />
+                <ul>
+                    <li>
+                        
+                    </li>
+                </ul>
               </Col>
             </Row>
           </Container>
