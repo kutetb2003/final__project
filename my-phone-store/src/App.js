@@ -1,7 +1,6 @@
 import Home from "./pages/Home";
 import "./App.css";
-import NavBar from "./Components/Navigation/index.js";
-import SwiperComp from "./Components/Swiper/index.js";
+
 import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products";
 import About from "./pages/About";

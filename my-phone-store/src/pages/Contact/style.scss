@@ -1,7 +1,28 @@
+$red-color: #f33f3f;
 .contact{
     margin-bottom: 10px;
     &__block{
         margin-top: 80px;
+        ul{
+            display:flex;
+            margin-top: 20px;
+            
+            li{
+                margin-right: 20px;
+                list-style-type: none;
+                width: 60px; 
+                height: 60px;
+                background: #eeeeee;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                &:hover{
+                    background: $red-color;
+                    cursor: pointer;
+                    color: #fff;
+                }
+            }
+        }
         &__heading{
             font-size: 28px;
             font-weight: 500;
@@ -21,6 +42,18 @@
             &--2{
                 margin-top: 30px;
             }
+        }
+    }
+    &__form{
+        &__heading{
+            font-size: 28px;
+        }
+        &__block{
+            margin-top: 60px;
+        }
+        &__message{
+            height: 150px;
+            vertical-align: top
         }
     }
 }
