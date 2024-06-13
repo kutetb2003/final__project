@@ -1,5 +1,4 @@
-// trandanhkiet160903
-//kiet14137
+
 
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import { env } from '~/config/environment';
@@ -22,7 +21,6 @@ export const CONNECT_DB = async () =>{
 }
 
 export const CLOSE_DB = async () =>{
-  console.log('code is runing here');
   await mongoClientInstance.close()
 }
 
