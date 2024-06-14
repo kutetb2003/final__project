@@ -36,9 +36,12 @@ const getDetails = async (productId) => {
   }
 };
 
-const getAll = async(req, res, next) => {
+const getAll = async({brand, _start, _limit }) => {
   try {
-    return await productModel.getAll();
+    
+    const result = await productModel.getAll({ brand, _start, _limit });
+    // console.log('Service ' + brand + ' _start ' + _start + ' _limit ' + _limit);
+    return result
   } catch (error) {
     throw Error(error)
   }

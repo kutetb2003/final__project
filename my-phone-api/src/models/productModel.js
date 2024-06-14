@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { ObjectId } from 'mongodb'
 import objectId from 'joi-objectid'
 import { GET_DB } from '~/config/mongodb'
+import { query } from 'express'
 Joi.objectId = objectId(Joi)
 
 // Define Collection(Name & schema)
@@ -49,15 +50,28 @@ const findOneById = async (id) => {
   }
 }
 
-const getAll = async (id) => {
+const getAll = async ({ brand, _start, _limit }) => {
   try {
     //Aggregate
-    const result = await GET_DB().collection(PRODUCT_COLLECTION_NAME).find({}).toArray()
+    const query = {};
+    if (brand) {
+      query.brand = brand;
+    }
+    const cursor = GET_DB().collection(PRODUCT_COLLECTION_NAME).find(query)
+    if (_start !== undefined && _start !== null) {
+      cursor.skip(parseInt(_start, 10));
+    }
+    if (_limit !== undefined && _limit !== null) {
+      cursor.limit(parseInt(_limit, 10));
+    }
+    // console.log('Model ' + brand + ' _start ' + _start + ' _limit ' + _limit);
+    const result = await cursor.toArray()
     return result
   } catch (error) {
     throw new Error(error)
   }
 }
+
 
 export const productModel = {
   PRODUCT_COLLECTION_NAME,

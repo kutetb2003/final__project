@@ -6,17 +6,21 @@ import HrLine from "../../Components/HorizontalLine";
 import "./style.scss";
 import { useState, useEffect } from "react";
 import Button from "../../Components/Button";
-import { NavLink, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { API_ROOT } from "../utils/constants.js";
 import { FaChevronRight } from "react-icons/fa";
+import Popup from "../../Components/Popup";
+import Cookies from "js-cookie";
+
 const Home = () => {
   const [latestProduct, setLatestProduct] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/products?_start=10&_end=19");
+        const response = await fetch(`${API_ROOT}/products`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -27,11 +31,33 @@ const Home = () => {
       }
     };
     fetchData();
+
+    let popupClosed = Cookies.get("popupClosed");
+    //if(!popupClosed)
+
+    // => Show
+    /*if(!popupClosed) */if (!popupClosed) {
+      Cookies.set("popupClosed", "false", { expires: 1 }); // Đặt cookie lần đầu tiên truy cập và có hạn 1 ngày
+      popupClosed = "false";
+    }
+
+    if (popupClosed === "false") {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 5000); // 5 giây
+      return () => clearTimeout(timer);
+    }
   }, []);
-  console.log(latestProduct);
+
+  const handleClosePopup = () => {
+    Cookies.set("popupClosed", "true", { expires: 1 }); // Set cookie expiring in 1 day
+    setShowPopup(false);
+  };
+
   return (
     <>
       <SwiperComp />
+      {showPopup && <Popup onClose={handleClosePopup} />}
       <div className="latestProduct">
         <div className="latestProduct__header">
           <Container>
@@ -42,9 +68,7 @@ const Home = () => {
               <Col className="latestProduct__header__button">
                 <FaChevronRight />
                 <div className="latestProduct__header__button--active">
-                  <Link to = "/products">
-                    VIEW ALL PRODUCTS
-                  </Link>
+                  <Link to="/products">VIEW ALL PRODUCTS</Link>
                 </div>
               </Col>
             </Row>
@@ -54,19 +78,19 @@ const Home = () => {
         <div className="latestProduct__list">
           <Container>
             <Row>
-              {latestProduct.map((item, index) => (
-                <Col xl={4} lg={4} md={6}>
-                  <img src={item.thumbnail}></img>
+              {latestProduct.slice(-9).map((item, index) => (
+                <Col xl={4} lg={4} md={6} key={index}>
                   <div className="latestProduct__list__item">
-                    <div class="latestProduct__list__item__overall">
-                      <div class="latestProduct__list__item__overall--title">
+                    <img src={item.thumbnail} alt={item.title} />
+                    <div className="latestProduct__list__item__overall">
+                      <div className="latestProduct__list__item__overall--title">
                         {item.title}
                       </div>
-                      <div class="latestProduct__list__item__overall--price">
+                      <div className="latestProduct__list__item__overall--price">
                         ${item.price}
                       </div>
                     </div>
-                    <div class="latestProduct__list__description">
+                    <div className="latestProduct__list__description">
                       {item.description}
                     </div>
                   </div>
@@ -81,7 +105,7 @@ const Home = () => {
           <Container>
             <Row>
               <Col>
-                <div>About Sixteen Clothing</div>
+                <div>About CELLPHONE SELLING</div>
               </Col>
             </Row>
           </Container>
@@ -113,7 +137,10 @@ const Home = () => {
               </Col>
               <Col cl={6} lg={6} md={12}>
                 <div className="shortAbout__content--image">
-                  <img src="https://templatemo.com/templates/templatemo_546_sixteen_clothing/assets/images/feature-image.jpg"></img>
+                  <img
+                    src="https://templatemo.com/templates/templatemo_546_sixteen_clothing/assets/images/feature-image.jpg"
+                    alt="Feature"
+                  />
                 </div>
               </Col>
             </Row>

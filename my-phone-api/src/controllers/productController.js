@@ -1,5 +1,4 @@
 import { StatusCodes } from 'http-status-codes'
-import ApiError from '~/utils/ApiError';
 import { productService } from '~/services/productService'
 
 const createNew = async (req, res, next) => {
@@ -29,12 +28,17 @@ const getDetails = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const products = await productService.getAll()
+    const { brand ,_start, _limit } = req.query
+    const start = _start ? parseInt(_start, 10) : undefined
+    const limit = _limit ? parseInt(_limit, 10) : undefined
+    const products = await productService.getAll({brand , _start, _limit})
+    // console.log('brand : ' + brand + ' start ' + _start + ' _limit ' + _limit)
     res.status(StatusCodes.OK).json(products);
   } catch (error) {
     next(error)
   }
 }
+
 export const productController = {
   createNew,
   getDetails,

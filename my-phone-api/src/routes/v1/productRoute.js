@@ -11,5 +11,4 @@ Router.route('/')
 Router.route('/:id')
   .get(productController.getDetails)
   .put() //update data
-
 export const productRoute = Router

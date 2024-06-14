@@ -7,12 +7,14 @@ import Header from "../../Components/Header";
 import "./style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { API_ROOT } from '../utils/constants.js'
+
 const Products = () => {
   const limit = 6;
   const [data, setData] = useState([]);
   const [pageActive, setPageActive] = useState(0);
   const [quantityPage, setQuantityPage] = useState(0);
-  const [url, setUrl] = useState("http://localhost:8000/products");
+  const [url, setUrl] = useState(`${API_ROOT}/products`);
   const [categoryActive, setCategoryActive] = useState("");
   useEffect(() => {
     fetchData(url);
@@ -20,39 +22,30 @@ const Products = () => {
 
   const fetchData = async (url) => {
     try {
-      let response1, response2;
-      if (`${url}` === "http://localhost:8000/products") {
-        response1 = await fetch(`${url}`);
-        response2 = await fetch(
-          `${url}?_start=${limit * pageActive}&_limit=${limit}`
-        );
-      } else {
-        response1 = await fetch(`${url}`);
-        response2 = await fetch(
-          `${url}&_start=${limit * pageActive}&_limit=${limit}`
-        );
-      }
-      console.log(
-        "response2\n" + `${url}&_start=${limit * pageActive}&_limit=${limit}`
+      const response1 = await fetch(url);
+      const response2 = await fetch(
+        `${url}${url.includes('?') ? '&' : '?'}_start=${limit * pageActive}&_limit=${limit}`
       );
-      if (!response1.ok) {
+      console.log(`${url}`)
+      console.log( `${url}${url.includes('?') ? '&' : '?'}_start=${limit * pageActive}&_limit=${limit}`);
+      if (!response1.ok || !response2.ok) {
         throw new Error("Network response was not ok");
       }
+
       const result1 = await response1.json();
       const result2 = await response2.json();
       setData(result2);
       setQuantityPage(Math.ceil(result1.length / limit));
+
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const handleFetchProduct = (category) => {
+  const handleFetchProduct = (brand) => {
     setPageActive(0);
-    setCategoryActive(category);
-    category === ""
-      ? setUrl("http://localhost:8000/products")
-      : setUrl(`http://localhost:8000/products?category=${category}`);
+    setCategoryActive(brand);
+    setUrl(brand ? `${API_ROOT}/products?brand=${brand}` : `${API_ROOT}/products`);
   };
 
   const handleClickPagi = (e) => {
@@ -81,9 +74,9 @@ const Products = () => {
                   All Products
                 </li>
                 <li
-                  onClick={() => handleFetchProduct("smartphones")}
+                  onClick={() => handleFetchProduct("iphone")}
                   className={
-                    categoryActive === "smartphones" ? "product__active" : ""
+                    categoryActive === "iphone" ? "product__active" : ""
                   }
                 >
                   Iphone
