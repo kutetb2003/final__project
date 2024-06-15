@@ -86,7 +86,10 @@ $title-color: #1a6692;
         color: $red-color;
     }
 }
-
+.link{
+    text-decoration: none;
+    color: inherit
+}
 .pagination {
     display: flex;
     text-align: center;

@@ -6,7 +6,7 @@ import Products from "./pages/Products";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
-import ProductDetail from "./pages/ProductDetail/index.js"; 
+import ProductDetail from "./pages/Products/ProductDetail.js";
 import LayoutDefault from "./Layout/LayoutDefault/index.js";
 
 function App() {
@@ -15,7 +15,9 @@ function App() {
       <Routes>
         <Route path = "/" element = {<LayoutDefault/>}>
           <Route path="/" element={<Home />}></Route>
-          <Route path="products" element={<Products />}></Route>
+          <Route path="products" element={<Products />}>
+            <Route path = "detail/:id" element = {<ProductDetail/>}/>
+          </Route>
           <Route path="about" element={<About />}></Route>
           <Route path="contacts" element={<Contact />}></Route>
           <Route path="cart" element = {<Cart/>}></Route>

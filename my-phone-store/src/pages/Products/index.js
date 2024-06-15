@@ -6,9 +6,9 @@ import HrLine from "../../Components/HorizontalLine";
 import Header from "../../Components/Header";
 import "./style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { API_ROOT } from '../utils/constants.js'
-
+import { Outlet } from "react-router-dom";
+import { API_ROOT } from "../utils/constants.js";
+import { Link } from "react-router-dom";
 const Products = () => {
   const limit = 6;
   const [data, setData] = useState([]);
@@ -24,10 +24,16 @@ const Products = () => {
     try {
       const response1 = await fetch(url);
       const response2 = await fetch(
-        `${url}${url.includes('?') ? '&' : '?'}_start=${limit * pageActive}&_limit=${limit}`
+        `${url}${url.includes("?") ? "&" : "?"}_start=${
+          limit * pageActive
+        }&_limit=${limit}`
       );
-      console.log(`${url}`)
-      console.log( `${url}${url.includes('?') ? '&' : '?'}_start=${limit * pageActive}&_limit=${limit}`);
+      console.log(`${url}`);
+      console.log(
+        `${url}${url.includes("?") ? "&" : "?"}_start=${
+          limit * pageActive
+        }&_limit=${limit}`
+      );
       if (!response1.ok || !response2.ok) {
         throw new Error("Network response was not ok");
       }
@@ -36,7 +42,6 @@ const Products = () => {
       const result2 = await response2.json();
       setData(result2);
       setQuantityPage(Math.ceil(result1.length / limit));
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -45,7 +50,9 @@ const Products = () => {
   const handleFetchProduct = (brand) => {
     setPageActive(0);
     setCategoryActive(brand);
-    setUrl(brand ? `${API_ROOT}/products?brand=${brand}` : `${API_ROOT}/products`);
+    setUrl(
+      brand ? `${API_ROOT}/products?brand=${brand}` : `${API_ROOT}/products`
+    );
   };
 
   const handleClickPagi = (e) => {
@@ -53,15 +60,18 @@ const Products = () => {
   };
 
   console.log(data);
-  const backgroundUrl = "https://templatemo.com/templates/templatemo_546_sixteen_clothing/assets/images/products-heading.jpg";
+  const backgroundUrl =
+    "https://templatemo.com/templates/templatemo_546_sixteen_clothing/assets/images/products-heading.jpg";
   return (
     <>
-      <div
-        className="products"
-        style={{ background: `url(${backgroundUrl})` }}
-      >
-        <Header title="NEW ARRIVALS" description="CELLPHONE PRODUCTS" url={backgroundUrl} />
+      <div className="products" style={{ background: `url(${backgroundUrl})` }}>
+        <Header
+          title="NEW ARRIVALS"
+          description="CELLPHONE PRODUCTS"
+          url={backgroundUrl}
+        />
       </div>
+      <Outlet />
       <div className="product">
         <Container>
           <Row>
@@ -104,20 +114,22 @@ const Products = () => {
           <Row>
             {data.map((item) => (
               <Col xl={4} lg={4} key={item.id}>
-                <div className="product__all__item">
-                  <img src={item.thumbnail} alt={item.title} />
-                  <div className="product__all__item__overall">
-                    <div className="product__all__item__overall--title">
-                      {item.title}
+                <Link className = "link" to={`/products/detail/${item._id}`}>
+                  <div className="product__all__item">
+                    <img src={item.thumbnail} alt={item.title} />
+                    <div className="product__all__item__overall">
+                      <div className="product__all__item__overall--title">
+                        {item.title}
+                      </div>
+                      <div className="product__all__item__overall--price">
+                        ${item.price}
+                      </div>
                     </div>
-                    <div className="product__all__item__overall--price">
-                      ${item.price}
+                    <div className="product__all__item__description">
+                      {item.description}
                     </div>
                   </div>
-                  <div className="product__all__item__description">
-                    {item.description}
-                  </div>
-                </div>
+                </Link>
               </Col>
             ))}
           </Row>

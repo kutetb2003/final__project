@@ -1,0 +1,20 @@
+.productDetail{
+    padding-top: 50px;
+    &__title{
+        font-weight: 600;
+        font-size: 24px;
+    }
+    &__description{
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    &__tag{
+        font-size: 24px;
+        margin-top: 20px;
+    }
+    &__price{
+        font-size: 26px;
+        font-weight: 650;
+        color: #f33f3f;
+    }
+}

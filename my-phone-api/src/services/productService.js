@@ -23,7 +23,18 @@ const createNew = async (reqBody) => {
     throw error
   }
 };
-
+const putNewReview = async (productId, reviewData) => {
+  try {
+    const result = await productModel.putNewReview(productId, reviewData);
+    console.log('service' , productId);
+    if (!result.success) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to add review to product');
+    }
+    return { success: true };
+  } catch (error) {
+    throw error;
+  }
+};
 const getDetails = async (productId) => {
   try {
     const product = await productModel.findOneById(productId)
@@ -50,5 +61,6 @@ const getAll = async({brand, _start, _limit }) => {
 export const productService = {
   createNew,
   getDetails,
-  getAll
+  getAll,
+  putNewReview
 };

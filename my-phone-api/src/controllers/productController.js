@@ -14,10 +14,26 @@ const createNew = async (req, res, next) => {
   }
 };
 
+const putNewReview = async (req, res, next) => {
+  try {
+    const { productId, reviewerName, content, email, rating } = req.body;
+    console.log('req.body : ' ,req.body)
+    const reviewData = {
+      reviewerName,
+      content,
+      email,
+      rating
+    };
+    const result = await productService.putNewReview(productId, reviewData);
+    res.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getDetails = async (req, res, next) => {
   try {
     const productId = req.params.id
-
     const product = await productService.getDetails(productId)
 
     res.status(StatusCodes.OK).json(product)
@@ -42,5 +58,6 @@ const getAll = async (req, res, next) => {
 export const productController = {
   createNew,
   getDetails,
+  putNewReview,
   getAll
 }

@@ -10,5 +10,5 @@ Router.route('/')
 
 Router.route('/:id')
   .get(productController.getDetails)
-  .put() //update data
+  .put( productController.putNewReview) //update data
 export const productRoute = Router
