@@ -6,6 +6,7 @@ import Products from "./pages/Products";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
+import ProductDetail from "./pages/ProductDetail/index.js"; 
 import LayoutDefault from "./Layout/LayoutDefault/index.js";
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="products" element={<Products />}></Route>
           <Route path="about" element={<About />}></Route>
-          <Route path="contact" element={<Contact />}></Route>
+          <Route path="contacts" element={<Contact />}></Route>
           <Route path="cart" element = {<Cart/>}></Route>
         </Route>
       </Routes>

@@ -33,24 +33,21 @@ const Home = () => {
     fetchData();
 
     let popupClosed = Cookies.get("popupClosed");
-    //if(!popupClosed)
-
-    // => Show
-    /*if(!popupClosed) */if (!popupClosed) {
-      Cookies.set("popupClosed", "false", { expires: 1 }); // Đặt cookie lần đầu tiên truy cập và có hạn 1 ngày
+    if (!popupClosed) {
+      Cookies.set("popupClosed", "false", { expires: 1 });
       popupClosed = "false";
     }
 
     if (popupClosed === "false") {
       const timer = setTimeout(() => {
         setShowPopup(true);
-      }, 5000); // 5 giây
+      }, 5000);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const handleClosePopup = () => {
-    Cookies.set("popupClosed", "true", { expires: 1 }); // Set cookie expiring in 1 day
+    Cookies.set("popupClosed", "true", { expires: 1 });
     setShowPopup(false);
   };
 
@@ -62,9 +59,7 @@ const Home = () => {
         <div className="latestProduct__header">
           <Container>
             <Row>
-              <Col className="latestProduct__header__title">
-                Latest Products
-              </Col>
+              <Col className="latestProduct__header__title">Latest Products</Col>
               <Col className="latestProduct__header__button">
                 <FaChevronRight />
                 <div className="latestProduct__header__button--active">
@@ -80,20 +75,20 @@ const Home = () => {
             <Row>
               {latestProduct.slice(-9).map((item, index) => (
                 <Col xl={4} lg={4} md={6} key={index}>
-                  <div className="latestProduct__list__item">
-                    <img src={item.thumbnail} alt={item.title} />
-                    <div className="latestProduct__list__item__overall">
-                      <div className="latestProduct__list__item__overall--title">
-                        {item.title}
+                    <div className="latestProduct__list__item">
+                      <img src={item.thumbnail} alt={item.title} />
+                      <div className="latestProduct__list__item__overall">
+                        <div className="latestProduct__list__item__overall--title">
+                          {item.title}
+                        </div>
+                        <div className="latestProduct__list__item__overall--price">
+                          ${item.price}
+                        </div>
                       </div>
-                      <div className="latestProduct__list__item__overall--price">
-                        ${item.price}
+                      <div className="latestProduct__list__description">
+                        {item.description}
                       </div>
                     </div>
-                    <div className="latestProduct__list__description">
-                      {item.description}
-                    </div>
-                  </div>
                 </Col>
               ))}
             </Row>

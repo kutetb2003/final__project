@@ -4,7 +4,7 @@ import objectId from 'joi-objectid'
 import { GET_DB } from '~/config/mongodb'
 const CONTACT_COLLECTION_NAME = 'contacts'
 const CONTACT_COLLECTION_SCHEMA = Joi.object({
-  fullName : Joi.string().required().min(3).max(50).trim().strict(),
+  userName : Joi.string().required().min(3).max(50).trim().strict(),
   emailAddress : Joi.string().email().required().min(3).max(50).trim().strict(),
   message : Joi.string().required().min(3).max(256).trim().strict()
 })
