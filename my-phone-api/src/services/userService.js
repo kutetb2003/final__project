@@ -35,7 +35,18 @@ const getDetails = async (userId) => {
   }
 };
 
+const findUserByUserName = async (userName) => {
+  try {
+    const user = await userModel.findOneByUsername({ userName });
+    console.log('user', user);
+    return user;
+  } catch (error) {
+    console.error('Error finding user by userName:', error);
+    throw error;
+  }
+};
 export const userService = {
   createNew,
-  getDetails
+  getDetails,
+  findUserByUserName
 };

@@ -34,8 +34,19 @@ const getDetails = async (contactId) => {
     throw error
   }
 };
+
+const getAll = async () =>{
+  try {
+    const response = await contactModel.getAll()
+    console.log('service is here');
+    return response
+  } catch (error) {
+    throw new Error(error)
+  }
+}
 export const contactService = {
     createNew,
-    getDetails
+    getDetails,
+    getAll
 };
   

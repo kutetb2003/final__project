@@ -5,9 +5,7 @@ import { userController } from '~/controllers/userController'
 const Router = express.Router()
 
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message : 'GET/route:  API get list users'})
-  })
+  .get(userController.getDetails)
   .post(userValidation.createNew, userController.createNew)
 
 Router.route('/:id')

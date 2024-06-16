@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Cart from "./pages/Cart";
+import Login from './pages/Login'
 import ProductDetail from "./pages/Products/ProductDetail.js";
 import LayoutDefault from "./Layout/LayoutDefault/index.js";
 
@@ -20,7 +20,7 @@ function App() {
           </Route>
           <Route path="about" element={<About />}></Route>
           <Route path="contacts" element={<Contact />}></Route>
-          <Route path="cart" element = {<Cart/>}></Route>
+          <Route path="login" element = {<Login/>}></Route>
         </Route>
       </Routes>
     </>

@@ -22,6 +22,24 @@ const createNew = async (req, res, next) => {
     next(new ApiError(StatusCodes.UNPROCESSABLE_ENTITY, new Error(error).message))
   }
 }
+// const validUser = async (req, res, next) => {
+//   const correctCondition = Joi.object({
+//     userName: Joi.string().required().min(3).max(50).trim().strict().messages({
+//       'any.required' : 'username is required',
+//       'string.empty' : 'username is not allowed to be empty'
+//     }),
+//     password: Joi.string().required().max(50).trim().strict()
+//   })
+//   try {
+//     console.log('req.body:',req.body)
+//     // abortEarly : trường hợp nhiều lỗi , return tất cả lỗi
+//     await correctCondition.validateAsync(req.body, { abortEarly: false })
+//     //Validate data done, req => controller
+//     next()
+//   } catch (error) {
+//     next(new ApiError(StatusCodes.UNPROCESSABLE_ENTITY, new Error(error).message))
+//   }
+// }
 
 export const userValidation = {
   createNew

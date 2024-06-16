@@ -17,13 +17,19 @@ const createNew = async (req, res, next) => {
 
 const getDetails = async (req, res, next) => {
   try {
-    const userId = req.params.id
+    const { userName, password } = req.query;
+    console.log(req.query, 'query');
 
-    const user = await userService.getDetails(userId)
+    // Giả định bạn có một hàm trong userService để xác thực người dùng
+    const user = await userService.findUserByUserName(userName);
 
-    res.status(StatusCodes.OK).json(user)
+    if (user && user.password === password) {
+      return res.status(StatusCodes.OK).json({ message: 'Login successful', user });
+    } else {
+      return res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({ message: 'Invalid username or password' });
+    }
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 export const userController = {

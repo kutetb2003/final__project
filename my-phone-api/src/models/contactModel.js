@@ -45,11 +45,22 @@ const getDetails = async (id) => {
     throw new Error(error)
   }
 }
+const getAll = async () => {
+  try {
+    const cursor = GET_DB().collection(CONTACT_COLLECTION_NAME).find();
+    const results = await cursor.toArray();
+    console.log('----------', results);
+    return results;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 export const contactModel = {
   CONTACT_COLLECTION_NAME,
   CONTACT_COLLECTION_SCHEMA,
   createNew,
   findOneById,
-  getDetails
+  getDetails,
+  getAll
 }
