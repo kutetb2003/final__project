@@ -91,3 +91,27 @@ $title-color: #1a6692;
   }
 }
 // End short about
+@media (max-width: 991.98px){
+  .latestProduct{
+    &__list{
+      &__item{
+        padding: 0 20px 20px 20px;
+        width: 350px;
+        height: 400px;
+        margin-top: 10px;
+        img{
+          width: 60%;
+        }
+        &__overall{
+          &--title{
+            font-size: 16px;
+          }
+          
+        }
+      }
+      &__description{
+        font-size: 14px;
+      }
+    }
+  }
+}

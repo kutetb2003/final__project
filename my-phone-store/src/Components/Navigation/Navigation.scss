@@ -47,5 +47,26 @@ $red-color: #F33F3F;
             font-size: 24px;
             line-height: 1;
         }
+        &__icon{
+            &--mobi{
+                color: #F33F3F;
+                font-size: 24px;
+                display:none;
+            }
+        }
+    }
+}
+@media (max-width: 991.98px){
+    .nav{
+        &__list{
+            display:none;
+            &__icon{
+                &--mobi{
+                    display:block;
+                    margin-right: 100px;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

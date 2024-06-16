@@ -74,7 +74,7 @@ const Home = () => {
           <Container>
             <Row>
               {latestProduct.slice(-9).map((item, index) => (
-                <Col xl={4} lg={4} md={6} key={index}>
+                <Col lg={4} md={6} sm = {12} key={index}>
                     <div className="latestProduct__list__item">
                       <img src={item.thumbnail} alt={item.title} />
                       <div className="latestProduct__list__item__overall">
@@ -109,7 +109,7 @@ const Home = () => {
         <div className="shortAbout__content">
           <Container>
             <Row>
-              <Col xl={6} lg={6} md={12}>
+              <Col xl={6} lg={6} md={6}>
                 <div className="shortAbout__content--title">
                   Discover the Best Mobile Devices
                 </div>

@@ -113,7 +113,7 @@ const Products = () => {
         <Container>
           <Row>
             {data.map((item) => (
-              <Col xl={4} lg={4} key={item.id}>
+              <Col xl={4} lg={4} md = {6} sm = {12} key={item.id}>
                 <Link className = "link" to={`/products/detail/${item._id}`}>
                   <div className="product__all__item">
                     <img src={item.thumbnail} alt={item.title} />
