@@ -10,6 +10,8 @@ import HrLine from "../../Components/HorizontalLine";
 import Button from "../../Components/Button";
 import "./detail.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { IoStar } from "react-icons/io5";
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -134,18 +136,35 @@ const ProductDetail = () => {
               </Form>
             </Col>
           </Row>
-          {product && product.reviews.length !== 0 && (
-            <Row>
-              <Col>
-                <h4>Reviews:</h4>
-                <ul>
-                  {product.reviews.map((review) => (
-                    <li key={review._id}>{review.content}</li>
-                  ))}
-                </ul>
-              </Col>
-            </Row>
-          )}
+          <h2>Reviews:</h2>
+          {product.reviews.length !== 0 &&
+            product.reviews.map((review) => (
+              <>
+                <Row>
+                  <Col>
+                    <div className="productDetail__review" key={review._id}>
+                      <div className="productDetail__review__name">
+                      <img src="https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528" />
+                        <div>{review.reviewerName}</div>
+                        
+                      </div>
+                      <div className="productDetail__review__box">
+                        <div className="productDetail__review__box__rating">
+                          <div>
+                            {review.rating}
+                          </div>
+                          <IoStar className="productDetail__review__box__rating--yellow"/>
+                        </div>
+                        <div className="productDetail__review__box__content">
+                          {review.content}
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+                <HrLine />
+              </>
+            ))}
           <HrLine />
         </Container>
       </div>
